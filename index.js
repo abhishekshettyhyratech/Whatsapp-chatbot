@@ -11,7 +11,7 @@ require('dotenv').config({path: '.env'})
 
 // Set the WhatsApp token and port
 const token = process.env.TOKEN;
-const port = process.env.PORT || 1337;
+const port = process.env.PORT;
 
 // Sets server port and logs message on success
 app.listen(port, () => console.log("webhook is listening on port: " + port + " with token: " + token));
