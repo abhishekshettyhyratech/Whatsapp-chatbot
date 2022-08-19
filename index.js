@@ -13,7 +13,7 @@ const port = process.env.PORT;
 
 app.listen(port, () => console.log("webhook is listening on port: " + port + " with token: " + token));
 
-app.post("/wa-cloud-api-webhook/webhook", (req, res) => {
+app.put("/wa-cloud-api-webhook/webhook", (req, res) => {
   let body = req.body;
  
   console.log(JSON.stringify(req.body, null, 2));
