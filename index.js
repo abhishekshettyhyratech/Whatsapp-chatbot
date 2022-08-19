@@ -40,7 +40,7 @@ app.post("/wa-cloud-api-webhook/webhook", (req, res) => {
         data: {
           messaging_product: "whatsapp",
           to: from,
-          text: { body: "Ack: " + msg_body },
+          text: { body: "What's your name??" },
         },
         headers: { "Content-Type": "application/json" },
       }).catch(
