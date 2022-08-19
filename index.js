@@ -89,3 +89,7 @@ app.get("/wa-cloud-api-webhook/webhook", (req, res) => {
     }
   }
 });
+
+app.get('/',((req,res)=>{
+res.send('hello webhook')
+}))
