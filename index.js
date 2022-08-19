@@ -33,7 +33,7 @@ app.put("/wa-cloud-api-webhook/webhook", (req, res) => {
       axios({
         method: "POST", 
         url:
-          "https://graph.facebook.com/v13.0/" +
+          "https://graph.facebook.com/v14.0/" +
           phone_number_id +
           "/messages?access_token=" +
           token,
