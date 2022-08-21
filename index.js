@@ -13,13 +13,13 @@ const port = process.env.PORT;
 
 const list=[
   {
-    text:0
-  },
-  {
-    text:0
-  },
-  {
     text:1
+  },
+  {
+    text:3
+  },
+  {
+    text:2
   }
 ]
 app.listen(port, () => console.log("webhook is listening on port: " + port + " with token: " + token));
@@ -65,7 +65,7 @@ app.listen(port, () => console.log("webhook is listening on port: " + port + " w
            parameters: [
                {
                    type: "text",
-                   text: "4"
+                   text: e.text,
                }
            ]
          }
