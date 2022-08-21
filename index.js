@@ -53,7 +53,7 @@ app.post("/wa-cloud-api-webhook/webhook", (req, res) => {
            parameters: [
                {
                    type: "text",
-                   text: "2"
+                   text: "4"
                }
            ]
          }
