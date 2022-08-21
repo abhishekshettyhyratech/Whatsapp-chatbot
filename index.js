@@ -11,9 +11,21 @@ require('dotenv').config({path: '.env'})
 const token = process.env.TOKEN;
 const port = process.env.PORT;
 
+const list=[
+  {
+    text:0
+  },
+  {
+    text:0
+  },
+  {
+    text:1
+  }
+]
 app.listen(port, () => console.log("webhook is listening on port: " + port + " with token: " + token));
 
-app.post("/wa-cloud-api-webhook/webhook", (req, res) => {
+{list.map((e)=>{
+  app.post("/wa-cloud-api-webhook/webhook", (req, res) => {
   let body = req.body;
  
   console.log(JSON.stringify(req.body, null, 2));
@@ -71,6 +83,9 @@ app.post("/wa-cloud-api-webhook/webhook", (req, res) => {
     res.sendStatus(404);
   }
 });
+
+})}
+
 
 
 app.get("/wa-cloud-api-webhook/webhook", (req, res) => {
