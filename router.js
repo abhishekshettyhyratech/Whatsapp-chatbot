@@ -41,7 +41,7 @@ router.post("/webhook", (req, res) => {
              parameters: [
                  {
                      type: "text",
-                     text: e.text,
+                     text: "2",
                  }
              ]
            }
