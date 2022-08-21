@@ -10,83 +10,12 @@ require('dotenv').config({path: '.env'})
 
 const token = process.env.TOKEN;
 const port = process.env.PORT;
+const postRoute=require('./router')
 
-const list=[
-  {
-    text:1
-  },
-  {
-    text:3
-  },
-  {
-    text:2
-  }
-]
 app.listen(port, () => console.log("webhook is listening on port: " + port + " with token: " + token));
 
-{list.map((e)=>{
-  app.post("/wa-cloud-api-webhook/webhook", (req, res) => {
-  let body = req.body;
- 
-  console.log(JSON.stringify(req.body, null, 2));
 
-  if (req.body.object) {
-    if (
-      req.body.entry &&
-      req.body.entry[0].changes &&
-      req.body.entry[0].changes[0] &&
-      req.body.entry[0].changes[0].value.messages &&
-      req.body.entry[0].changes[0].value.messages[0]
-    ) {
-      let phone_number_id =
-        req.body.entry[0].changes[0].value.metadata.phone_number_id;
-      let from = req.body.entry[0].changes[0].value.messages[0].from; 
-      let msg_body = req.body.entry[0].changes[0].value.messages[0].text.body; 
-      axios({
-        method: "POST", 
-        url:
-          "https://graph.facebook.com/v13.0/" +
-          phone_number_id +
-          "/messages?access_token=" +
-          token,
-        data: {
-          messaging_product: "whatsapp",
-          to: from,
-          type: "template",
-    template: {
-       name: "sample_shipping_confirmation",
-       language: {
-           code: "en_US",
-           policy: "deterministic"
-       },
-       components: [
-         {
-           type: "body",
-           parameters: [
-               {
-                   type: "text",
-                   text: e.text,
-               }
-           ]
-         }
-       ]
-    }
-        },
-        headers: { "Content-Type": "application/json" },
-      }).catch(
-        function (error) {
-          console.log(error.toJSON())
-        });
-    }
-    res.sendStatus(200);
-  } else {
-    res.sendStatus(404);
-  }
-});
-
-})}
-
-
+app.use("/wa-cloud-api-webhook",postRoute);
 
 app.get("/wa-cloud-api-webhook/webhook", (req, res) => {
   const verify_token = process.env.MYTOKEN;
