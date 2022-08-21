@@ -40,7 +40,25 @@ app.post("/wa-cloud-api-webhook/webhook", (req, res) => {
         data: {
           messaging_product: "whatsapp",
           to: from,
-          text: { body: "What's your name??" },
+          type: "template",
+    template: {
+       name: "sample_shipping_confirmation",
+       language: {
+           code: "en_US",
+           policy: "deterministic"
+       },
+       components: [
+         {
+           type: "body",
+           parameters: [
+               {
+                   type: "text",
+                   text: "2"
+               }
+           ]
+         }
+       ]
+    }
         },
         headers: { "Content-Type": "application/json" },
       }).catch(
@@ -50,7 +68,6 @@ app.post("/wa-cloud-api-webhook/webhook", (req, res) => {
     }
     res.sendStatus(200);
   } else {
-
     res.sendStatus(404);
   }
 });
@@ -64,13 +81,10 @@ app.get("/wa-cloud-api-webhook/webhook", (req, res) => {
 
 
   if (mode && token) {
-
     if (mode === "subscribe" && token === verify_token) {
-    
       console.log("WEBHOOK_VERIFIED");
       res.status(200).send(challenge);
     } else {
-
       res.sendStatus(403);
     }
   }
