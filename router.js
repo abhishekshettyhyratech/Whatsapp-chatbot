@@ -18,6 +18,8 @@ router.post("/webhook", (req, res) => {
           req.body.entry[0].changes[0].value.metadata.phone_number_id;
         let from = req.body.entry[0].changes[0].value.messages[0].from; 
         let msg_body = req.body.entry[0].changes[0].value.messages[0].text.body; 
+
+        if(msg_body==='Eye Specialist'){
         axios({
           method: "POST", 
           url:
@@ -30,7 +32,7 @@ router.post("/webhook", (req, res) => {
             to: from,
             type: "template",
       template: {
-        "name": "appointment",
+        "name": "appointment_eye",
         "language": {
             "code": "en_US"
         }
@@ -42,6 +44,7 @@ router.post("/webhook", (req, res) => {
           function (error) {
             console.log(error.toJSON())
           });
+        }
       }
       res.sendStatus(200);
     } else {
