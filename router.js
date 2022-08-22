@@ -30,22 +30,11 @@ router.post("/webhook", (req, res) => {
             to: from,
             type: "template",
       template: {
-         name: "sample_shipping_confirmation",
-         language: {
-             code: "en_US",
-             policy: "deterministic"
-         },
-         components: [
-           {
-             type: "body",
-             parameters: [
-                 {
-                     type: "text",
-                     text: "2",
-                 }
-             ]
-           }
-         ]
+        "name": "appointment",
+        "language": {
+            "code": "en_US"
+        }
+        
       }
           },
           headers: { "Content-Type": "application/json" },
